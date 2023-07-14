@@ -63,19 +63,26 @@ const Product = () => {
           {data.map((elem, index) => (
             <div key={index} className={styles.electricityBrand}>
               <div className={styles.energyLogo} />
-              <div className={styles.monthEnergyPlan}>
-                12 Month Energy Plan Period
-              </div>
+              <div
+                className={styles.monthEnergyPlan}
+                dangerouslySetInnerHTML={{ __html: elem.cooling_off_period }}
+              ></div>
               <div className={styles.skyBlueHighlightedText}>
                 <div className={styles.skyBlueHighlightedTextChild} />
                 <div className={styles.standardFeedIn}>
-                  Standard Feed in Tariff: 5c
+                  {elem.solar_rates[0].solar_description}
                 </div>
               </div>
-              <div className={styles.noExitFees}>No Exit Fees</div>
-              <div className={styles.creditIncludingGst}>
-                $100 credit (including GST) protated daily*
-              </div>
+              <div
+                className={styles.noExitFees}
+                dangerouslySetInnerHTML={{ __html: elem.view_exit_fee }}
+              ></div>
+              <div
+                className={styles.creditIncludingGst}
+                dangerouslySetInnerHTML={{
+                  __html: elem.credit_card_service_fee,
+                }}
+              ></div>
               <div
                 className={styles.noLockInContract}
                 dangerouslySetInnerHTML={{ __html: elem.contract_length }}
@@ -143,11 +150,10 @@ const Product = () => {
               </div>
               <div className={styles.componentFooter}>
                 <div className={styles.componentFooterChild} />
-                <div className={styles.theEstimatedCost}>
-                  ^ The estimated cost includes any applicable welcome credits,
-                  bonuses, and conditional discounts (if applicable) which apply
-                  within the first 12 months of the plan.
-                </div>
+                <div
+                  className={styles.theEstimatedCost}
+                  dangerouslySetInnerHTML={{ __html: elem.view_discount }}
+                ></div>
                 <div className={styles.connectOnlineTodayWrapper}>
                   <div className={styles.filter}>Connect online Today</div>
                 </div>
@@ -156,9 +162,12 @@ const Product = () => {
                   dangerouslySetInnerHTML={{ __html: elem.cooling_off_period }}
                 ></div>
                 <div className={styles.secureSignupIn}>
-                  Secure signup in 5 mins
+                  {elem.green_options_desc}
                 </div>
-                <div className={styles.saveTimeAnd}>Save time and effort</div>
+                <div
+                  className={styles.saveTimeAnd}
+                  dangerouslySetInnerHTML={{ __html: elem.view_discount }}
+                ></div>
                 <div className={styles.tick1}>
                   <div className={styles.tickItem} />
                   <img className={styles.vectorIcon1} alt="" src="" />
